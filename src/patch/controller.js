@@ -8,5 +8,9 @@ export default args => ({
   },
   patchEntry: args.data || {},
   patchId: +(new Date()),
-  patchList: require(`../patchList`)
+  patchList: require(`../patchList`),
+  dvClass: config => 
+    Object.keys(config)
+      .map(key => config[key] === true ? key : '')
+      .join(' ')
 });

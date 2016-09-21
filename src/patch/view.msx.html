@@ -1,40 +1,31 @@
 <div class='patch-entry'>
   <div>
-    <label class="mdl-icon-toggle mdl-js-icon-toggle" 
-          for={`icon-toggle-enable-${$ctrl.patchId}`}> 
-      <input type="checkbox"
-            id={`icon-toggle-enable-${$ctrl.patchId}`}
-            class="mdl-icon-toggle__input"
-            checked={$ctrl.patchEntry.is_enabled()}/>
-      <span class="mdl-icon-toggle__label center-icon-vertically"
-            aria-hidden="true">
-        <i class="fa fa-power-off mdl-icon-toggle__label"></i>
-      </span>
-    </label>
-    <label class="mdl-icon-toggle" 
-          for={`icon-toggle-container-type-${$ctrl.patchId}`}> 
-      <input type="checkbox"
-            id={`icon-toggle-container-type-${$ctrl.patchId}`}
-            class="mdl-icon-toggle__input"
-            onchange={m.withAttr("checked", $ctrl.changeContainerType)}
-            checked={$ctrl.patchEntry.is_container_type()}/>
-      <span class="mdl-icon-toggle__label center-icon-vertically"
-            aria-hidden="true">
+    <div class='btn-group' role='group'>
+      <button type='button'
+              class={$ctrl.dvClass({
+                'btn': true,
+                'btn-success': $ctrl.patchEntry.is_enabled(),
+                'btn-danger': !$ctrl.patchEntry.is_enabled()
+              })}
+              onclick={() => $ctrl.patchEntry.toggleEnabled()}>
+        <i class="fa fa-power-off"></i>
+      </button>
+      <button type='button'
+              class='btn btn-info'>
         <i class={$ctrl.patchEntry.is_container_type() ? ["fa-list", "fa", "mdl-icon-toggle__label"].join(" ") : ["fa-list", "fa", "fa-angle-double-right"].join(" ")} ></i>
-      </span>
-    </label>
-    <div class="mdl-textfield mdl-js-textfield description">
-      <input class="mdl-textfield__input" 
-            type="text" 
-            id={`description-${$ctrl.patchId}`} 
-            value={$ctrl.patchEntry.desc()}/>
-      <label class="mdl-textfield__label" 
-            for={`description-${$ctrl.patchId}`}>
+      </button>
+    </div>
+    <div class="input-group description">
+      {JSON.stringify($ctrl.patchEntry)}
+      <span class="input-group-addon"
+            id={`basic-addon-${$ctrl.patchId}`}>
         Description
-      </label>
-      <span class="mdl-textfield__error">
-        Letters and spaces only
       </span>
+      <input class="form-control" 
+             type="text" 
+             id={`description-${$ctrl.patchId}`}
+             placeholder="Description" 
+             value={$ctrl.patchEntry.desc()}/>
     </div>
   </div>
 
