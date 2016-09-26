@@ -32,6 +32,15 @@ function PatchEntry(data) {
 
   function toggleContainerType() {
     pe.is_container_type(!pe.is_container_type());
+    if (!pe.is_container_type) {
+      pe.value = m.prop(DEFAULT_DATA.value);
+      pe.offset = m.prop(DEFAULT_DATA.offset);
+      delete pe.children;
+    } else {
+      delete pe.value;
+      delete pe.offset;
+      pe.children = [];
+    }
   }
 }
 
