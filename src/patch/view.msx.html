@@ -35,7 +35,8 @@
                 type="text"
                 id={`description-${$ctrl.patchId}`}
                 placeholder="Description"
-                value={$ctrl.patchEntry.desc()}/>
+                value={$ctrl.patchEntry.desc()}
+                onchange={m.withAttr("value", $ctrl.patchEntry.desc)}/>
         </div>
       </div>
     </div>
