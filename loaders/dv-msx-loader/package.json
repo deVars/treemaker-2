@@ -1,0 +1,11 @@
+{
+  "name": "dv-msx-loader",
+  "version": "1.0.0",
+  "description": "custom msx loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests\" && exit 0"
+  },
+  "author": "Roseller M. Velicaria, Jr.",
+  "license": "Apache-2.0"
+}

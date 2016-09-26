@@ -1,0 +1,92 @@
+<div class="patch-entry">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group" role="group">
+        <button type="button"
+                class={$ctrl.setClass({
+                  "btn": true,
+                  "btn-success": $ctrl.patchEntry.is_enabled(),
+                  "btn-warning": !$ctrl.patchEntry.is_enabled()
+                })}
+                onclick={$ctrl.patchEntry.toggleEnabled}>
+          <i class="fa fa-power-off"></i>
+        </button>
+        <button type="button"
+                class="btn btn-info"
+                onclick={$ctrl.patchEntry.toggleContainerType}>
+          <i class={$ctrl.setClass({
+            fa: true,
+            "fa-list": $ctrl.patchEntry.is_container_type(),
+            "fa-angle-double-right": !$ctrl.patchEntry.is_container_type()
+          })}></i>
+        </button>
+        <button type="button"
+                class="btn btn-default"
+                onclick={$ctrl.deleteEntry}>
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+      <div class="description-group">
+        <div class="input-group description">
+          <span class="input-group-addon">
+            Description
+          </span>
+          <input class="form-control"
+                type="text"
+                id={`description-${$ctrl.patchId}`}
+                placeholder="Description"
+                value={$ctrl.patchEntry.desc()}/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show children if container type -->
+  {
+  $ctrl.patchEntry.is_container_type() ?
+  <$ctrl.patchList list={$ctrl.patchEntry.children}/>
+  :
+  <!-- Show value + offset if not -->
+  <div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-0">
+        <div class="input-group offset">
+          <span class="input-group-addon">
+            Offset
+          </span>
+          <input class="form-control offset"
+                type="text"
+                id={`offset-${$ctrl.patchId}`}
+                placeholder="Offset"
+                pattern="[0-9A-Fa-f]+"
+                maxlength="6"
+                value={$ctrl.patchEntry.offset()}
+                onchange={m.withAttr("value", $ctrl.patchEntry.offset)}/>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="input-group value">
+          <span class="input-group-addon">
+            Value
+          </span>
+          <input class="form-control value"
+                type="text"
+                id={`value-${$ctrl.patchId}`}
+                placeholder="Value"
+                pattern="[0-9A-Fa-f]+"
+                value={$ctrl.patchEntry.value()}
+                onchange={m.withAttr("value", $ctrl.patchEntry.value)}/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="well">
+          {$ctrl.patchEntry.value() ? $ctrl.patchEntry.value().replace(/([0-9A-Fa-f]{1,2})/g, "$1 ") : "N/A"}
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
