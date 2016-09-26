@@ -1,9 +1,30 @@
+
 .center-icon-vertically {
   margin-top: 5px;
 }
 
+.content {
+  padding: 8px 8px 70px 8px;
+  width: calc(100% - 24px);
+}
+
+.export-group {
+  display: inline-block;
+  margin-left: 8px;
+}
+
 .description {
-  width: calc(100% - 10em);
+  margin-left: 8px;
+}
+
+.description-group {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 200px);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .padded {
@@ -11,10 +32,13 @@
 }
 
 .patch-list {
-  padding: 0.5em 0 0em 2em;
-  border-left: solid 1px darkgray;
+  padding-left: 2em;
 }
 
 .patch-entry {
-  padding: 0 0 1em 0;
+  border-left: #cacaca 1px dotted;
+}
+
+.row {
+  padding-bottom: 6px;
 }

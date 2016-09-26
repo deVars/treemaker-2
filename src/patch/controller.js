@@ -1,16 +1,20 @@
-export default args => ({
-  changeContainerType: (val) => {
-    if (!val) {
-      args.data.offset(undefined);
-      args.data.value(undefined);
+const setClass = require('../utils/setClass');
+
+function PatchController(config) {
+  function deleteEntry() {
+    if (config.index !== undefined) {
+      config.list.splice(config.index, 1);
     }
-    args.data.is_container_type(val);
-  },
-  patchEntry: args.data || {},
-  patchId: +(new Date()),
-  patchList: require(`../patchList`),
-  dvClass: config => 
-    Object.keys(config)
-      .map(key => config[key] === true ? key : '')
-      .join(' ')
-});
+  }
+
+  return {
+    deleteEntry: deleteEntry,
+    patchEntry: config.entry || {},
+    patchEntries: config.list || [],
+    patchId: +(new Date()),
+    patchList: require(`../patchList`),
+    setClass: setClass
+  };
+}
+
+export default PatchController;

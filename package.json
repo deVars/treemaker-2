@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "NODE_ENV='DEV' ./node_modules/.bin/webpack-dev-server --hot --inline",
-    "prod:server": "NODE_ENV='PROD' ./node_modules/.bin/webpack-dev-server --hot --inline",
+    "dev:server": "NODE_ENV='DEV' ./node_modules/.bin/webpack-dev-server --hot --inline --watch",
+    "prod:server": "NODE_ENV='PROD' ./node_modules/.bin/webpack-dev-server --hot --inline --watch",
     "prod:build": "NODE_ENV='PROD' ./node_modules/.bin/webpack"
   },
   "repository": {

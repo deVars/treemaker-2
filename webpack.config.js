@@ -1,12 +1,26 @@
 'use strict'
 const path = require(`path`),
       webpack = require(`webpack`);
-const BANNER = `Simple Patcher Tree-maker 2\n` + 
-  `Roseller M. Velicaria, Jr.\n` + 
-  `github.com/devars\n` + 
+const BANNER = `Simple Patcher Tree-maker 2\n` +
+  `Roseller M. Velicaria, Jr.\n` +
+  `github.com/devars\n` +
   `${new Date()}`;
 const ROOT_PATH = path.resolve('./');
 const BABEL_LOADER = 'babel?presets[]=es2015&plugins[]=babel-plugin-add-module-exports';
+let watchPolling = false;
+/**
+ * workaround for windows subsystem for linux
+ * https://github.com/Microsoft/BashOnWindows/issues/468
+ **/
+try {
+  require('os').networkInterfaces();
+} catch (e) {
+  require('os').networkInterfaces = () => ([]);
+  watchPolling = true;
+}
+/**
+ * end of workaround
+ */
 
 let config = {
       entry: './src/index.js',
@@ -29,6 +43,18 @@ let config = {
           DEV_MODE: JSON.stringify(process.env.NODE_ENV === `DEV`)
         })
       ],
+      resolve: {
+        extensions: [
+          '',
+          '.webpack.js',
+          '.web.js',
+          '.js',
+          '.msx.html'
+        ]
+      },
+      watchOptions: {
+        poll: watchPolling
+      },
       jshint: {
         node: true,
         predef: [`window`, `DEV_MODE`]

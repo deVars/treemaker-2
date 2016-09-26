@@ -1,19 +1,68 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout__title">Simple Patcher Tree Maker</span>
-      <div class="mdl-layout-spacer"></div>
-      <div>
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-          Ok
-        </button>
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-          Cancel
-        </button>
+<div>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/"
+           config={m.route}
+           class="navbar-brand">
+           Simple Patcher Tree Maker
+        </a>
+      </div>
+      <ui class="nav navbar-nav navbar-left">
+        <li>
+          <a href="/raw"
+             config={m.route}>
+            Preview JSON
+          </a>
+        </li>
+        <li>
+          <a href="/utils"
+             config={m.route}>
+            Utilities
+          </a>
+        </li>
+      </ui>
+      <div class="nav navbar-nav navbar-right">
+
+        <div class="navbar-form">
+          <ui class="export-group">
+            <li>
+              <a href=""
+                 class="navbar-link">
+                <label class="fa fa-upload">
+                  <input type="file"
+                        multiple="false"
+                        accept="application/json"
+                        class="hidden"
+                        onchange={$ctrl.load}/>
+                </label>
+              </a>
+            </li>
+          </ui>
+          <div class="export-group">
+            <div class="input-group">
+              <input type="text"
+                     class="form-control"
+                     placeholder="Export filename"
+                     value={$ctrl.exportFilename()}
+                     onchange={m.withAttr("value", $ctrl.exportFilename)}/>
+              <span class="input-group-addon">
+                <a href={$ctrl.saveUrl()}
+                   class="navbar-link"
+                   onclick={$ctrl.save}
+                   onmouseover={$ctrl.generateUrl}
+                   download={$ctrl.exportFilename()}>
+                  <i class="fa fa-download"></i>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </header>
-  <div class='content'>
+  </nav>
+
+  <div class="content">
     <$ctrl.content list={$ctrl.data}/>
   </div>
 </div>

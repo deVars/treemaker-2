@@ -1,9 +1,15 @@
 const patch = require(`../patch`);
+const PatchEntry = require(`../patchEntry`);
 
 function PatchListController(args) {
-  this.list = args.list || [];
-  this.patch = patch;
-  console.debug(this.list);
+  let ctrl = this;
+  ctrl.list = args.list || [];
+  ctrl.patch = patch;
+  ctrl.addEntry = addEntry;
+
+  function addEntry() {
+    ctrl.list.push(new PatchEntry());
+  }
 }
 
 export default PatchListController;

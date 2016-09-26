@@ -1,23 +1,37 @@
 const m = require(`mithril`);
+const DEFAULT_DATA = {
+  desc: '',
+  is_container_type: false,
+  is_enabled: true,
+  offset: 0,
+  value: 0
+};
 
-class PatchEntry {
-  constructor(data) {
-    if (!data) {
-      return;
-    }
-
-    this.desc = m.prop(data.desc);
-    this.is_enabled = m.prop(data.is_enabled);
-    this.is_container_type = m.prop(data.is_container_type);
-    this.offset = m.prop(data.offset);
-    this.value = m.prop(data.value);
-    this.children = data.children && 
-      data.children.map(childData => (new PatchEntry(childData)));
+function PatchEntry(data) {
+  if (data === undefined) {
+    data = DEFAULT_DATA;
   }
 
-  toggleEnabled() {
-    this.is_enabled(!this.is_enabled());
-    console.debug('toggleEnabled', this.is_enabled());
+  let pe = {
+    desc: m.prop(data.desc),
+    is_enabled: m.prop(data.is_enabled),
+    is_container_type: m.prop(data.is_container_type),
+    offset: m.prop(data.offset),
+    value: m.prop(data.value),
+    children: data.children &&
+      data.children.map(childData => (new PatchEntry(childData)))
+  }
+
+  pe.toggleEnabled = toggleEnabled;
+  pe.toggleContainerType = toggleContainerType;
+  return pe;
+
+  function toggleEnabled() {
+    pe.is_enabled(!pe.is_enabled());
+  }
+
+  function toggleContainerType() {
+    pe.is_container_type(!pe.is_container_type());
   }
 }
 
