@@ -18,12 +18,14 @@ function PatchEntry(data) {
     is_container_type: m.prop(data.is_container_type),
     offset: m.prop(data.offset),
     value: m.prop(data.value),
+    _are_children_hidden: m.prop(false),
     children: data.children &&
       data.children.map(childData => (new PatchEntry(childData)))
   }
 
   pe.toggleEnabled = toggleEnabled;
   pe.toggleContainerType = toggleContainerType;
+  pe.toggleHideChildren = toggleHideChildren;
   return pe;
 
   function toggleEnabled() {
@@ -41,6 +43,11 @@ function PatchEntry(data) {
       delete pe.offset;
       pe.children = [];
     }
+  }
+
+  function toggleHideChildren() {
+    pe._are_children_hidden(!pe._are_children_hidden());
+    m.redraw();
   }
 }
 

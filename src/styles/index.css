@@ -1,11 +1,16 @@
+.app {
+  background-color: #c0c9cf;
+}
 
 .center-icon-vertically {
   margin-top: 5px;
 }
 
 .content {
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 8px 8px 70px 8px;
-  width: calc(100% - 24px);
 }
 
 .export-group {
@@ -14,17 +19,23 @@
 }
 
 .description {
-  margin-left: 8px;
+  vertical-align: middle;
+  width: calc(100% - 175px);
 }
 
 .description-group {
   display: inline-block;
-  vertical-align: middle;
-  width: calc(100% - 200px);
+
+
+}
+
+.inline-group {
+  display: inline-block;
+  margin-left: 8px;
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .padded {
@@ -36,7 +47,7 @@
 }
 
 .patch-entry {
-  border-left: #cacaca 1px dotted;
+  border-left: rgba(217, 217, 217, 0.5) 1px outset;
 }
 
 .row {

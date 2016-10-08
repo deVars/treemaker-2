@@ -1,6 +1,7 @@
 const setClass = require('../utils/setClass');
+const patchBody = require('../patchBody');
 
-function PatchController(config) {
+function PatchHeaderController(config) {
   function deleteEntry() {
     if (config.index !== undefined) {
       config.list.splice(config.index, 1);
@@ -9,6 +10,7 @@ function PatchController(config) {
 
   return {
     deleteEntry: deleteEntry,
+    patchBody: patchBody,
     patchEntry: config.entry || {},
     patchEntries: config.list || [],
     patchId: +(new Date()),
@@ -17,4 +19,4 @@ function PatchController(config) {
   };
 }
 
-export default PatchController;
+export default PatchHeaderController;
