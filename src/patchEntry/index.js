@@ -4,7 +4,8 @@ const DEFAULT_DATA = {
   is_container_type: false,
   is_enabled: true,
   offset: 0,
-  value: 0
+  value: 0,
+  _are_children_hidden: false
 };
 
 function PatchEntry(data) {
@@ -18,7 +19,7 @@ function PatchEntry(data) {
     is_container_type: m.prop(data.is_container_type),
     offset: m.prop(data.offset),
     value: m.prop(data.value),
-    _are_children_hidden: m.prop(false),
+    _are_children_hidden: m.prop(!data.is_enabled),
     children: data.children &&
       data.children.map(childData => (new PatchEntry(childData)))
   }
